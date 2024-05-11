@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useAuth0 } from '@auth0/auth0-react'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { updateKey } from "../libs/cf" 
 
@@ -23,6 +23,7 @@ function CreateKey() {
   const [key, setKey] = useState("")
   const [loading, setLoading] = useState(false)
   const [value, setValue] = useState('')
+  const navigate = useNavigate()
 
   if(!isAuthenticated && !isLoading) {
     toast.error('You need to be logged in to create a key', {
