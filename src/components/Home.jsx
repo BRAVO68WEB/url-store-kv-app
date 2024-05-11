@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LoginNOutButton = () => {
@@ -28,9 +29,13 @@ function Home() {
   return (
     <div className="app-home">
       <div className="app-container">
-        <h1>Home</h1>
-        <p>Welcome to the home page!</p>
-        
+        <h1>URL KV Store App</h1>
+        <p>Controls https://s.b68.dev</p>
+
+        <Link to={"https://github.com/BRAVO68WEB/url-store-kv-app.git"}>Github Repo</Link>
+        <br />
+        <br />
+
         <ViewKeysButton />
         <LoginNOutButton />
       </div>
