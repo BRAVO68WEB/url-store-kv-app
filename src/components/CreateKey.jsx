@@ -61,21 +61,21 @@ function CreateKey() {
   return (
     <div className="app-home">
       <div className='app-container'>
-        <h2>Create Key</h2>
+        <h2>Create Short link</h2>
         {loading ? (
           <p>Loading...</p>
         ) : (
           <div>
             <div className='input-label'>
             <label>
-              Key Name:
+              Slug:
             </label>
             <br />
             <input type="text" value={key} onChange={(e) => setKey(e.target.value)} id="urlkey" />
             </div>
             <div className='input-label'>
             <label>
-              Value:
+              Original URL:
             </label>
               <br />
             <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />

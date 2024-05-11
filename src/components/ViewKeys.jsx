@@ -45,7 +45,7 @@ function ViewKey() {
   return (
     <div className="app-home">
       <div className='app-container'>
-        <h2>View Keys</h2>
+        <h2>View Urls</h2>
         {loading ? (
           <p>Loading...</p>
         ) : (

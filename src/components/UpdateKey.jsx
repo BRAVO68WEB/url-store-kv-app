@@ -84,18 +84,18 @@ function Updatekey() {
   return (
     <div className="app-home">
       <div className='app-container'>
-        <h2>Update Key</h2>
+        <h2>Update Slugs</h2>
         {loading ? (
           <p>Loading...</p>
         ) : (
           <div>
             <label>
-              Key Name:
+              Slug:
               <input type="text" value={key} disabled />
             </label>
             <br />
             <label>
-              Value:
+              Original Url:
               <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
             </label>
             <br />
