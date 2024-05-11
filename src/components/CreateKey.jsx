@@ -1,0 +1,93 @@
+import { useState } from 'react'
+import { toast } from 'react-toastify'
+import { useAuth0 } from '@auth0/auth0-react'
+import { Navigate } from 'react-router-dom'
+
+import { updateKey } from "../libs/cf" 
+
+const generateCode = (noofchars) => {
+  let text = ''
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  for (let i = 0; i < noofchars; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length))
+  }
+  return text
+}
+
+const randomize = () => {
+  document.getElementById('urlkey').value = generateCode(6)
+}
+
+function CreateKey() {
+  const { isAuthenticated, isLoading } = useAuth0()
+  const [key, setKey] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [value, setValue] = useState('')
+
+  if(!isAuthenticated && !isLoading) {
+    toast.error('You need to be logged in to create a key', {
+      autoClose: 2000,
+      closeOnClick: true,
+    })
+
+    setTimeout(() => {navigate("/")}, 3000)
+    return (
+      <div>
+        <h2>Unauthorized</h2>
+        <p>You need to be logged in to create a key</p>
+      </div>
+    )
+  }
+
+  const save = async () => {
+    updateKey(key, value).then(() => {
+      setLoading(false)
+      toast.success('Value updated successfully', {
+        autoClose: 2000,
+        closeOnClick: true,
+      })
+
+      setTimeout(() => {navigate("/view")}, 3000)
+    })
+    .catch((err) => {
+      toast.error(err.message, {
+        autoClose: 2000,
+        closeOnClick: true,
+      })
+    })
+  }
+
+  return (
+    <div className="app-home">
+      <div className='app-container'>
+        <h2>Create Key</h2>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+            <div className='input-label'>
+            <label>
+              Key Name:
+            </label>
+            <br />
+            <input type="text" value={key} onChange={(e) => setKey(e.target.value)} id="urlkey" />
+            </div>
+            <div className='input-label'>
+            <label>
+              Value:
+            </label>
+              <br />
+            <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+            <br />
+            </div>
+            <button onClick={() => navigate("/")}>&#8592;</button>
+            <button onClick={randomize}>Randomize</button>
+            <button onClick={save}>Save</button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default CreateKey
