@@ -8,6 +8,8 @@ import { getKey, updateKey, deleteKey } from "../libs/cf"
 function Updatekey() {
   const { isAuthenticated, isLoading } = useAuth0()
   const [key, setKey] = useState({})
+  const [views , setViews] = useState(0)
+  const [lastViewed, setLastViewed] = useState(0)
   const [loading, setLoading] = useState(true)
   const [value, setValue] = useState('')
   const navigate = useNavigate()
@@ -19,6 +21,8 @@ function Updatekey() {
         getKey(key).then((data) => {
           setKey(key)
           setValue(data.value)
+          setViews(data.results[0].count)
+          setLastViewed(data.results[0].updated_at)
           setLoading(false)
           toast.success('Value fetched successfully', {
             autoClose: 2000,
@@ -96,6 +100,20 @@ function Updatekey() {
             </label>
             <br />
             <input type="text" value={key} disabled />
+            </div>
+            <div className='input-label'>
+            <label>
+              Views Count:
+            </label>
+            <br />
+            <input type="text" value={views} disabled />
+            </div>
+            <div className='input-label'>
+            <label>
+              Last Viewed On:
+            </label>
+            <br />
+            <input type="text" value={lastViewed} disabled />
             </div>
             <div className='input-label'>
             <label>
