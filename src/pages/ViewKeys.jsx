@@ -39,6 +39,8 @@ function ViewKey() {
       <div>
         <h2>Unauthorized</h2>
         <p>You need to be logged in to create a key</p>
+
+        <button onClick={() => navigate("/")}>Go back</button>
       </div>
     )
   }

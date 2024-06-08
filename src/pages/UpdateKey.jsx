@@ -77,6 +77,7 @@ function Updatekey() {
       <div>
         <h2>Unauthorized</h2>
         <p>You need to be logged in to create a key</p>
+        <button onClick={() => navigate("/")}>Go back</button>
       </div>
     )
   }
@@ -89,16 +90,22 @@ function Updatekey() {
           <p>Loading...</p>
         ) : (
           <div>
+            <div className='input-label'>
             <label>
               Slug:
-              <input type="text" value={key} disabled />
             </label>
             <br />
+            <input type="text" value={key} disabled />
+            </div>
+            <div className='input-label'>
             <label>
               Original Url:
-              <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
             </label>
             <br />
+              <textarea type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+            </div>
+            <br />
+            <button onClick={() => navigate("/")}>&#8592;</button>
             <button onClick={save}>Save</button>
             <button onClick={remove}>Remove</button>
           </div>

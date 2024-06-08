@@ -10,10 +10,10 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import './index.css'
 import 'react-toastify/dist/ReactToastify.css';
 
-import Home from './components/Home.jsx'
-import Updatekey from './components/UpdateKey.jsx';
-import ViewKey from './components/ViewKeys.jsx';
-import CreateKey from './components/CreateKey.jsx';
+import Home from './pages/Home.jsx'
+import Updatekey from './pages/UpdateKey.jsx';
+import ViewKey from './pages/ViewKeys.jsx';
+import CreateKey from './pages/CreateKey.jsx';
 
 const router = createBrowserRouter([
   {

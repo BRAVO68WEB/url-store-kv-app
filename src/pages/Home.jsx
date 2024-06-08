@@ -29,6 +29,7 @@ function Home() {
   return (
     <div className="app-home">
       <div className="app-container">
+        <img src="/chain.png" alt="App Logo" height={120} />
         <h1>URL KV Store App</h1>
         <p>Controls https://s.b68.dev</p>
 
