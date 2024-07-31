@@ -4,16 +4,22 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import { Auth0Provider } from "@auth0/auth0-react";
+import { ToastContainer } from 'react-toastify';
+import { LogtoProvider } from '@logto/react';
 
-import './index.css'
+import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Home from './pages/Home.jsx'
 import Updatekey from './pages/UpdateKey.jsx';
 import ViewKey from './pages/ViewKeys.jsx';
 import CreateKey from './pages/CreateKey.jsx';
+import Callback from './pages/Callback.jsx';
+
+const config = {
+  endpoint: import.meta.env.VITE_LOGTO_ENDPOINT,
+  appId: import.meta.env.VITE_LOGTO_APPID,
+};
 
 const router = createBrowserRouter([
   {
@@ -37,25 +43,19 @@ const router = createBrowserRouter([
   {
     path: "/create",
     element: <CreateKey />,
+  },
+  {
+    path: "/callback",
+    element: <Callback />,
   }
 ]);
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Auth0Provider
-      domain={import.meta.env.VITE_AUTH0_DOMAIN}
-      clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
-      authorizationParams={{
-        redirect_uri: window.location.origin,
-        max_age: 3600,
-        scope: 'openid profile email',
-      }}
-      cacheLocation='localstorage'
-      useRefreshTokens={true}
-    >
+    <LogtoProvider config={config}>
       <RouterProvider router={router} />
       <ToastContainer />
-    </Auth0Provider>
+    </LogtoProvider>
   </React.StrictMode>,
 )

@@ -4,6 +4,7 @@ export const keysList = async () => {
     const { data } = await axios.get(import.meta.env.VITE_API_HOST + '/list/keys', {
         headers: {
             'X-Auth-Key': import.meta.env.VITE_API_AUTH,
+            'Content-Type': 'application/json'
         },
     })
 

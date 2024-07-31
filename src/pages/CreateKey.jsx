@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useAuth0 } from '@auth0/auth0-react'
+import { useLogto } from '@logto/react';
 import { useNavigate } from 'react-router-dom'
 
 import { updateKey } from "../libs/cf" 
@@ -19,7 +19,7 @@ const randomize = () => {
 }
 
 function CreateKey() {
-  const { isAuthenticated, isLoading } = useAuth0()
+  const { isAuthenticated, isLoading } = useLogto()
   const [key, setKey] = useState("")
   const [loading, setLoading] = useState(false)
   const [value, setValue] = useState('')
