@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
+import { useLogto } from '@logto/react';
 import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ function ViewKey() {
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
   
-  const { isAuthenticated, isLoading } = useAuth0()
+  const { isAuthenticated, isLoading } = useLogto()
   useEffect(() => {
     if(!isLoading){
       if(isAuthenticated) {
@@ -32,7 +32,7 @@ function ViewKey() {
         setTimeout(() => {navigate("/")}, 10000)
       }
     }
-  }, [isLoading, isAuthenticated])
+  }, [isLoading, isAuthenticated, navigate])
 
   if(!isAuthenticated) {
     return (

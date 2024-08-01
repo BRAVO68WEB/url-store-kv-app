@@ -14,5 +14,5 @@ Micro front-end application for [url-store-kv-worker](https://github.com/BRAVO68
 
 - React
 - Vite
-- Auth0
+- Logto Auth
 - Cloudflare Pages

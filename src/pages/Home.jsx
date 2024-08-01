@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useLogto } from '@logto/react';
 
 const LoginNOutButton = () => {
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const { signIn, signOut, isAuthenticated  } = useLogto();
 
   return isAuthenticated ? (
-    <button onClick={() => logout()}>Log Out</button>
+    <button onClick={() => signOut('http://localhost:5173/')}>Sign Out</button>
   ) : (
-    <button onClick={() => loginWithRedirect()}>Log In</button>
+    <button onClick={() => signIn('http://localhost:5173/callback')}>Sign In</button>
   );
 };
 
 const ViewKeysButton = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useLogto();
 
   return isAuthenticated ? (
     <button

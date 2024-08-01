@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
+import { useLogto } from '@logto/react';
 
 import { getKey, updateKey, deleteKey } from "../libs/cf" 
 
 function Updatekey() {
-  const { isAuthenticated, isLoading } = useAuth0()
+  const { isAuthenticated, isLoading } = useLogto()
   const [key, setKey] = useState({})
   const [views , setViews] = useState(0)
   const [lastViewed, setLastViewed] = useState(0)
@@ -21,8 +21,8 @@ function Updatekey() {
         getKey(key).then((data) => {
           setKey(key)
           setValue(data.value)
-          setViews(data.results[0].count)
-          setLastViewed(data.results[0].updated_at)
+          setViews(data.results[0]?.count)
+          setLastViewed(data.results[0]?.updated_at)
           setLoading(false)
           toast.success('Value fetched successfully', {
             autoClose: 2000,
@@ -40,7 +40,7 @@ function Updatekey() {
         setTimeout(() => {navigate("/")}, 3000)
       }
     }
-  }, [isLoading, isAuthenticated])
+  }, [isLoading, isAuthenticated, navigate])
 
   const save = async () => {
     await updateKey(key, value)

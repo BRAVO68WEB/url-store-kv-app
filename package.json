@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@logto/react": "^3.0.14",
     "axios": "^1.6.8",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
@@ -31,5 +32,6 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0",
     "wrangler": "^3.55.0"
-  }
+  },
+  "packageManager": "pnpm@9.5.0"
 }
