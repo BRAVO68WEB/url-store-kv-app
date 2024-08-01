@@ -49,3 +49,13 @@ export const deleteKey = async (keyname) => {
 
     return data;
 }
+
+export const fetchStats = async () => {
+    const { data } = await axios.get(import.meta.env.VITE_API_HOST + '/stats', {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+
+    return data;
+}
