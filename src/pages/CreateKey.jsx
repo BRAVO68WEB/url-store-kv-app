@@ -62,32 +62,31 @@ function CreateKey() {
 
   return (
     <div className="app-home">
-      <div className='app-container'>
+      <div className='app-container app-form'>
         <h2>Create Short link</h2>
         {loading ? (
           <p>Loading...</p>
         ) : (
           <div>
             <div className='input-label'>
-            <label>
+            <label htmlFor='key'>
               Slug:
             </label>
-            <br />
             <input type="text" value={key} onChange={(e) => setKey(e.target.value)} id="urlkey" />
             </div>
             <div className='input-label'>
-            <label>
+            <label htmlFor='value'>
               Original URL:
             </label>
-              <br />
             <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
-            <br />
             </div>
-            <button onClick={() => navigate("/")}>&#8592;</button>
-            <button onClick={randomize}>Randomize</button>
-            <button onClick={save}>Save</button>
           </div>
         )}
+      </div>
+      <div className='app-container-nav'>
+        <button onClick={() => navigate("/view")}>&#8592;</button>
+        <button onClick={randomize}>Randomize</button>
+        <button onClick={save}>Save</button>
       </div>
     </div>
   )

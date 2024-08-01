@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useLogto } from '@logto/react';
-import { toast } from 'react-toastify'
-import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { keysList } from "../libs/cf" 
+import { keysList } from "../libs/cf";
 
 function ViewKey() {
   const [keys, setKeys] = useState([])
@@ -46,12 +46,12 @@ function ViewKey() {
   }
   return (
     <div className="app-home">
-      <div className='app-container'>
+      <div className='app-container app-form'>
         <h2>View Urls</h2>
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <>
+          <div>
             <ul>
               {keys.map((key) => (
                 <li key={key.name}>
@@ -59,12 +59,12 @@ function ViewKey() {
                 </li>
               ))}
             </ul>
-
-            <br />
-            <button onClick={() => navigate("/")}>&#8592;</button>
-            <button onClick={() => navigate("/create")}>Create +</button>
-          </>
+          </div>
         )}
+      </div>
+      <div className='app-container-nav'>
+        <button onClick={() => navigate("/")}>&#8592;</button>
+        <button onClick={() => navigate("/create")}>Create +</button>
       </div>
     </div>
   )

@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import { useLogto } from '@logto/react';
 
-import { getKey, updateKey, deleteKey } from "../libs/cf" 
+import { getKey, updateKey, deleteKey } from "../libs/cf";
 
 function Updatekey() {
   const { isAuthenticated, isLoading } = useLogto()
@@ -88,46 +88,44 @@ function Updatekey() {
 
   return (
     <div className="app-home">
-      <div className='app-container'>
+      <div className='app-container app-form'>
         <h2>Update Slugs</h2>
         {loading ? (
           <p>Loading...</p>
         ) : (
           <div>
             <div className='input-label'>
-            <label>
-              Slug:
-            </label>
-            <br />
-            <input type="text" value={key} disabled />
+              <label htmlFor="key">
+                Slug:
+              </label>
+              <input type="text" value={key} disabled />
             </div>
             <div className='input-label'>
-            <label>
-              Views Count:
-            </label>
-            <br />
-            <input type="text" value={views} disabled />
+              <label htmlFor="views">
+                Views Count:
+              </label>
+              <input type="text" value={views} disabled />
             </div>
             <div className='input-label'>
-            <label>
-              Last Viewed On:
-            </label>
-            <br />
-            <input type="text" value={lastViewed} disabled />
+              <label htmlFor="lastViewed">
+                Last Viewed On:
+              </label>
+              <input type="text" value={lastViewed} disabled />
             </div>
             <div className='input-label'>
-            <label>
-              Original Url:
-            </label>
+              <label htmlFor="value">
+                Original Url:
+              </label>
+                <textarea type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+              </div>
             <br />
-              <textarea type="text" value={value} onChange={(e) => setValue(e.target.value)} />
-            </div>
-            <br />
-            <button onClick={() => navigate("/")}>&#8592;</button>
-            <button onClick={save}>Save</button>
-            <button onClick={remove}>Remove</button>
           </div>
         )}
+      </div>
+      <div className='app-container-nav'>
+        <button onClick={() => navigate("/view")}>&#8592;</button>
+        <button onClick={save}>Save</button>
+        <button onClick={remove}>Remove</button>
       </div>
     </div>
   )
