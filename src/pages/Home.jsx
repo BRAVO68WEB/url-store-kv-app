@@ -5,9 +5,9 @@ const LoginNOutButton = () => {
   const { signIn, signOut, isAuthenticated  } = useLogto();
 
   return isAuthenticated ? (
-    <button onClick={() => signOut('http://localhost:5173/')}>Sign Out</button>
+    <button onClick={() => signOut(import.meta.env.VITE_HOST_URI)}>Sign Out</button>
   ) : (
-    <button onClick={() => signIn('http://localhost:5173/callback')}>Sign In</button>
+    <button onClick={() => signIn(import.meta.env.VITE_HOST_REDIRECT_URI)}>Sign In</button>
   );
 };
 
