@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import { useLogto } from '@logto/react';
-import { toast } from 'react-toastify'
-import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { keysList } from "../libs/cf" 
+import { fetchStats, keysList } from "../libs/cf";
 
 function ViewKey() {
   const [keys, setKeys] = useState([])
   const [loading, setLoading] = useState(true)
+  const [totolKeys, setTotalKeys] = useState(0)
+  const [totalViews, setTotalViews] = useState(0)
+
+  const { isAuthenticated, isLoading } = useLogto()
   const navigate = useNavigate()
   
-  const { isAuthenticated, isLoading } = useLogto()
   useEffect(() => {
     if(!isLoading){
       if(isAuthenticated) {
@@ -32,6 +35,11 @@ function ViewKey() {
         setTimeout(() => {navigate("/")}, 10000)
       }
     }
+
+    fetchStats().then((data) => {
+      setTotalKeys(data.total_keys)
+      setTotalViews(data.total_views)
+    })
   }, [isLoading, isAuthenticated, navigate])
 
   if(!isAuthenticated) {
@@ -46,12 +54,13 @@ function ViewKey() {
   }
   return (
     <div className="app-home">
-      <div className='app-container'>
+      <div className='app-container app-form'>
         <h2>View Urls</h2>
+        <h3>Total Keys : {totolKeys} | Total Views : {totalViews}</h3>
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <>
+          <div>
             <ul>
               {keys.map((key) => (
                 <li key={key.name}>
@@ -59,12 +68,12 @@ function ViewKey() {
                 </li>
               ))}
             </ul>
-
-            <br />
-            <button onClick={() => navigate("/")}>&#8592;</button>
-            <button onClick={() => navigate("/create")}>Create +</button>
-          </>
+          </div>
         )}
+      </div>
+      <div className='app-container-nav'>
+        <button onClick={() => navigate("/")}>&#8592;</button>
+        <button onClick={() => navigate("/create")}>Create +</button>
       </div>
     </div>
   )
